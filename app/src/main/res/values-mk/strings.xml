@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Expense Tracker</string>
+    <string name="add_income">Додади приход</string>
+    <string name="add_expense">Додади трошок</string>
+
+    <string name="profile">Профил</string>
+    <string name="settings">Поставки</string>
+
+    <string name="name">Име</string>
+    <string name="amount">Износ</string>
+    <string name="date">Датум</string>
+
+    <string name="enter_amount">Внеси износ</string>
+    <string name="select_date">Избери датум</string>
+
+    <string name="confirm">Потврди</string>
+    <string name="cancel">Откажи</string>
+
+    <string name="good_afternoon">Добар ден</string>
+
+    <string name="total_balance">Вкупен биланс</string>
+    <string name="income">Приход</string>
+    <string name="expense">Трошок</string>
+
+    <string name="recent_transactions">Последни трансакции</string>
+    <string name="see_all">Види ги сите</string>
+
+    <string name="user_name_placeholder">Антонела</string>
+    <string name="notifications_accessibility">Известувања</string>
+    <string name="toggle_menu">Опции</string>
+    <string name="menu_options">Мени со опции</string>
+</resources>
