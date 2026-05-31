@@ -29,4 +29,43 @@
     <string name="notifications_accessibility">Известувања</string>
     <string name="toggle_menu">Опции</string>
     <string name="menu_options">Мени со опции</string>
+
+    <string name="currency_symbol">ден </string>
+    <string name="back_accessibility">Назад</string>
+
+    <string name="category_paypal">Paypal</string>
+    <string name="category_salary">Плата</string>
+    <string name="category_freelance">Фриленс</string>
+    <string name="category_investments">Инвестиции</string>
+    <string name="category_bonus">Бонус</string>
+    <string name="category_rental">Кирија од имот</string>
+    <string name="category_grocery">Намирници</string>
+    <string name="category_netflix">Netflix</string>
+    <string name="category_rent">Кирија</string>
+    <string name="category_starbucks">Кафуле</string>
+    <string name="category_shopping">Шопинг</string>
+    <string name="category_transport">Транспорт</string>
+    <string name="category_utilities">Сметки</string>
+    <string name="category_dining">Ресторани</string>
+    <string name="category_entertainment">Забава</string>
+    <string name="category_healthcare">Здравство</string>
+    <string name="category_insurance">Осигурување</string>
+    <string name="category_subscriptions">Претплати</string>
+    <string name="category_education">Едукација</string>
+    <string name="category_debt">Отплата на долг</string>
+    <string name="category_gifts">Подароци и донации</string>
+    <string name="category_travel">Патувања</string>
+    <string name="category_other">Друго</string>
+
+    <string name="filter_all">Сите</string>
+    <string name="filter_all_time">Цело време</string>
+    <string name="filter_today">Денес</string>
+    <string name="filter_yesterday">Вчера</string>
+    <string name="filter_30_days">Последни 30 дена</string>
+    <string name="filter_90_days">Последни 90 дена</string>
+    <string name="filter_last_year">Минатата година</string>
+
+    <string name="statistics">Статистика</string>
+    <string name="top_spending">Најголеми трошоци</string>
+    <string name="title_expenses">Трошоци</string>
 </resources>

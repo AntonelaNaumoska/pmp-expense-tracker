@@ -113,7 +113,6 @@ fun NavigationBottomBar(
     navController: NavController,
     items: List<NavItem>
 ) {
-    // Bottom Navigation Bar
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
 

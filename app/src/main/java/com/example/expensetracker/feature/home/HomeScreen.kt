@@ -36,6 +36,7 @@ import com.example.expensetracker.data.model.ExpenseEntity
 import com.example.expensetracker.ui.theme.*
 import com.example.expensetracker.utils.Utils
 import com.example.expensetracker.widget.ExpenseTextView
+import com.example.expensetracker.utils.getLocalizedCategoryName
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 
@@ -63,9 +64,13 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
     }
 
     val state = viewModel.expenses.collectAsState(initial = emptyList())
-    val expense = viewModel.getTotalExpense(state.value)
-    val income = viewModel.getTotalIncome(state.value)
-    val balance = viewModel.getBalance(state.value)
+    val rawExpense = viewModel.getTotalExpense(state.value)
+    val rawIncome = viewModel.getTotalIncome(state.value)
+    val rawBalance = viewModel.getBalance(state.value)
+
+    val formattedBalance = Utils.formatCurrency(rawBalance)
+    val formattedIncome = Utils.formatCurrency(rawIncome)
+    val formattedExpense = Utils.formatCurrency(rawExpense)
 
     Surface(
         modifier = Modifier
@@ -90,9 +95,9 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
                         Spacer(modifier = Modifier.height(16.dp))
                         CardItem(
                             modifier = Modifier.fillMaxWidth(),
-                            balance = balance,
-                            income = income,
-                            expense = expense
+                            balance = formattedBalance,
+                            income = formattedIncome,
+                            expense = formattedExpense
                         )
                     }
 
@@ -136,9 +141,9 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = hiltView
                             modifier = Modifier
                                 .align(Alignment.BottomCenter)
                                 .offset(y = 100.dp),
-                            balance = balance,
-                            income = income,
-                            expense = expense
+                            balance = formattedBalance,
+                            income = formattedIncome,
+                            expense = formattedExpense
                         )
                     }
 
@@ -353,7 +358,7 @@ fun TransactionList(
             val amount = if (item.type == "Income") item.amount else item.amount * -1
 
             TransactionItem(
-                title = item.title,
+                title = getLocalizedCategoryName(dbKey = item.title),
                 amount = Utils.formatCurrency(amount),
                 icon = icon,
                 date = Utils.formatStringDateToMonthDayYear(item.date),

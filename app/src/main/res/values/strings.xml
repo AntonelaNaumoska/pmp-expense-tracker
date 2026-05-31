@@ -27,4 +27,43 @@
     <string name="notifications_accessibility">Notifications</string>
     <string name="toggle_menu">Toggle menu options</string>
     <string name="menu_options">Options menu</string>
+
+    <string name="currency_symbol">€</string>
+    <string name="back_accessibility">Go Back</string>
+
+    <string name="category_paypal">Paypal</string>
+    <string name="category_salary">Salary</string>
+    <string name="category_freelance">Freelance</string>
+    <string name="category_investments">Investments</string>
+    <string name="category_bonus">Bonus</string>
+    <string name="category_rental">Rental Income</string>
+    <string name="category_grocery">Grocery</string>
+    <string name="category_netflix">Netflix</string>
+    <string name="category_rent">Rent</string>
+    <string name="category_starbucks">Starbucks</string>
+    <string name="category_shopping">Shopping</string>
+    <string name="category_transport">Transport</string>
+    <string name="category_utilities">Utilities</string>
+    <string name="category_dining">Dining Out</string>
+    <string name="category_entertainment">Entertainment</string>
+    <string name="category_healthcare">Healthcare</string>
+    <string name="category_insurance">Insurance</string>
+    <string name="category_subscriptions">Subscriptions</string>
+    <string name="category_education">Education</string>
+    <string name="category_debt">Debt Payments</string>
+    <string name="category_gifts">Gifts &amp; Donations</string>
+    <string name="category_travel">Travel</string>
+    <string name="category_other">Other</string>
+
+    <string name="filter_all">All</string>
+    <string name="filter_all_time">All Time</string>
+    <string name="filter_today">Today</string>
+    <string name="filter_yesterday">Yesterday</string>
+    <string name="filter_30_days">Last 30 Days</string>
+    <string name="filter_90_days">Last 90 Days</string>
+    <string name="filter_last_year">Last Year</string>
+
+    <string name="statistics">Statistics</string>
+    <string name="top_spending">Top Spending</string>
+    <string name="title_expenses">Expenses</string>
 </resources>

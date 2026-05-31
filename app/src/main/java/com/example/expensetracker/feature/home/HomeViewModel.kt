@@ -9,6 +9,7 @@ import com.example.expensetracker.data.dao.ExpenseDao
 import com.example.expensetracker.data.model.ExpenseEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,37 +38,30 @@ class HomeViewModel @Inject constructor(val dao: ExpenseDao) : BaseViewModel() {
         }
     }
 
-    fun getBalance(list: List<ExpenseEntity>): String {
-        var balance = 0.0
-        for (expense in list) {
-            if (expense.type == "Income") {
-                balance += expense.amount
-            } else {
-                balance -= expense.amount
-            }
-        }
-        return Utils.formatCurrency(balance)
-    }
-
-    fun getTotalExpense(list: List<ExpenseEntity>): String {
+    fun getTotalExpense(list: List<ExpenseEntity>): Double {
         var total = 0.0
         for (expense in list) {
             if (expense.type != "Income") {
                 total += expense.amount
             }
         }
-
-        return Utils.formatCurrency(total)
+        return total
     }
 
-    fun getTotalIncome(list: List<ExpenseEntity>): String {
-        var totalIncome = 0.0
+    fun getTotalIncome(list: List<ExpenseEntity>): Double {
+        var total = 0.0
         for (expense in list) {
             if (expense.type == "Income") {
-                totalIncome += expense.amount
+                total += expense.amount
             }
         }
-        return Utils.formatCurrency(totalIncome)
+        return total
+    }
+
+    fun getBalance(list: List<ExpenseEntity>): Double {
+        val income = getTotalIncome(list)
+        val expense = getTotalExpense(list)
+        return income - expense
     }
 }
 

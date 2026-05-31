@@ -11,6 +11,8 @@ import java.util.Locale
 
 object Utils {
 
+    const val EUR_TO_MKD_RATE = 61.5
+
     fun formatDateToHumanReadableForm(dateInMillis: Long): String {
         val dateFormatter = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
         return dateFormatter.format(dateInMillis)
@@ -21,9 +23,14 @@ object Utils {
         return dateFormatter.format(dateInMillis)
     }
 
-    fun formatCurrency(amount: Double, locale: Locale = Locale.US): String {
-        val currencyFormatter = NumberFormat.getCurrencyInstance(locale)
-        return currencyFormatter.format(amount)
+    fun formatCurrency(amountInEur: Double, locale: Locale = Locale.getDefault()): String {
+        return if (locale.language == "mk" || locale.country == "MK") {
+            val amountInMkd = amountInEur * EUR_TO_MKD_RATE
+            String.format(locale, "%,.2f ден", amountInMkd)
+        } else {
+            val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.GERMANY)
+            currencyFormatter.format(amountInEur)
+        }
     }
 
     fun formatDayMonthYear(dateInMillis: Long): String {
