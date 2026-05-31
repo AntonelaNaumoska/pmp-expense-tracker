@@ -68,4 +68,22 @@
     <string name="statistics">Статистика</string>
     <string name="top_spending">Најголеми трошоци</string>
     <string name="title_expenses">Трошоци</string>
+
+    <string name="welcome_back">Добредојдовте назад</string>
+    <string name="create_account">Креирај Профил</string>
+    <string name="email_label">Е-пошта</string>
+    <string name="password_label">Лозинка</string>
+    <string name="confirm_password_label">Потврди Лозинка</string>
+    <string name="login_btn">Најави се</string>
+    <string name="register_btn">Регистрирај се</string>
+    <string name="sign_in_google">Продолжи со Google</string>
+    <string name="sign_in_facebook">Продолжи со Facebook</string>
+    <string name="login_anonymous">Пропушти најава и користи анонимно</string>
+    <string name="need_account_prompt">Немате кориснички профил? Регистрирајте се</string>
+    <string name="have_account_prompt">Веќе имате кориснички профил? Најавете се</string>
+    <string name="error_password_match">Лозинките не се совпаѓаат!</string>
+
+    <string name="facebook_app_id">2834409413601026</string>
+    <string name="fb_login_protocol_scheme">fb2834409413601026</string>
+    <string name="facebook_client_token">caa4efdec323c48615c473d38a0b13b7</string>
 </resources>

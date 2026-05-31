@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.expensetracker.R
+import com.example.expensetracker.data.model.ExpenseEntity
 import com.example.expensetracker.feature.home.TransactionList
 import com.example.expensetracker.utils.Utils
 import com.example.expensetracker.widget.ExpenseTextView
@@ -80,9 +81,23 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
             }
         }
     ) { paddingValues ->
-        val dataState = viewModel.entries.collectAsState(emptyList())
-        val topExpense = viewModel.topEntries.collectAsState(initial = emptyList())
+        val dataState = viewModel.entries.collectAsState(initial = emptyList())
+        val topExpenseState = viewModel.topEntries.collectAsState(initial = emptyList())
+
         val entries = viewModel.getEntriesForChart(dataState.value)
+
+        val displayableTopExpenses = remember(topExpenseState.value) {
+            topExpenseState.value.map { summary ->
+                ExpenseEntity(
+                    id = null,
+                    userId = "",
+                    title = summary.type,
+                    amount = summary.total_amount,
+                    date = summary.date,
+                    type = summary.type
+                )
+            }
+        }
 
         Surface(
             modifier = Modifier
@@ -111,7 +126,7 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
                     ) {
                         TransactionList(
                             modifier = Modifier.fillMaxSize(),
-                            list = topExpense.value,
+                            list = displayableTopExpenses,
                             title = stringResource(id = R.string.top_spending),
                             onSeeAllClicked = {}
                         )
@@ -123,7 +138,7 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
                     Spacer(modifier = Modifier.height(16.dp))
                     TransactionList(
                         modifier = Modifier.weight(1f),
-                        list = topExpense.value,
+                        list = displayableTopExpenses,
                         title = stringResource(id = R.string.top_spending),
                         onSeeAllClicked = {}
                     )

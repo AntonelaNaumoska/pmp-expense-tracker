@@ -66,4 +66,22 @@
     <string name="statistics">Statistics</string>
     <string name="top_spending">Top Spending</string>
     <string name="title_expenses">Expenses</string>
+
+    <string name="welcome_back">Welcome Back</string>
+    <string name="create_account">Create Account</string>
+    <string name="email_label">Email Address</string>
+    <string name="password_label">Password</string>
+    <string name="confirm_password_label">Confirm Password</string>
+    <string name="login_btn">Sign In</string>
+    <string name="register_btn">Sign Up</string>
+    <string name="sign_in_google">Continue with Google</string>
+    <string name="sign_in_facebook">Continue with Facebook</string>
+    <string name="login_anonymous">Skip, and use Anonymously</string>
+    <string name="need_account_prompt">Don\'t have an account? Sign Up</string>
+    <string name="have_account_prompt">Already have an account? Sign In</string>
+    <string name="error_password_match">Passwords do not match!</string>
+
+    <string name="facebook_app_id">2834409413601026</string>
+    <string name="fb_login_protocol_scheme">fb2834409413601026</string>
+    <string name="facebook_client_token">caa4efdec323c48615c473d38a0b13b7</string>
 </resources>

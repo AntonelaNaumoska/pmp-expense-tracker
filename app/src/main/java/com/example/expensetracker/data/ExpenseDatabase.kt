@@ -11,7 +11,7 @@ import com.example.expensetracker.data.model.ExpenseEntity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
-@Database(entities = [ExpenseEntity::class], version = 2, exportSchema = false)
+@Database(entities = [ExpenseEntity::class], version = 3, exportSchema = false)
 @Singleton
 abstract class ExpenseDatabase : RoomDatabase() {
 
@@ -30,7 +30,7 @@ abstract class ExpenseDatabase : RoomDatabase() {
                     ExpenseDatabase::class.java,
                     DATABASE_NAME
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
                 INSTANCE = instance
                 instance
@@ -66,5 +66,11 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 
         // Step 4: Rename the new table to the original table name
         database.execSQL("ALTER TABLE expense_table_new RENAME TO expense_table")
+    }
+}
+
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE expense_table ADD COLUMN userId TEXT NOT NULL DEFAULT ''")
     }
 }
