@@ -6,9 +6,11 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -32,6 +34,7 @@ import com.example.expensetracker.R
 import com.example.expensetracker.data.repository.Resource
 import com.example.expensetracker.feature.auth.components.FacebookSignInButton
 import com.example.expensetracker.feature.auth.components.GoogleSignInButton
+import com.example.expensetracker.localization.LocaleManager
 import com.example.expensetracker.ui.theme.Zinc
 import com.example.expensetracker.widget.ExpenseTextView
 import com.facebook.CallbackManager
@@ -56,6 +59,7 @@ fun LoginScreen(
     val context = LocalContext.current
     val authState by viewModel.authState.collectAsState()
     val coroutineScope = rememberCoroutineScope()
+    val lang = LocaleManager.currentLanguage.value
 
     val activity = context as? Activity
     val windowSizeClass = activity?.let { calculateWindowSizeClass(it) }
@@ -117,10 +121,31 @@ fun LoginScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(24.dp),
+                .padding(paddingValues),
             contentAlignment = Alignment.Center
         ) {
+
+            Box(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .statusBarsPadding()
+                    .padding(top = 16.dp, end = 24.dp)
+                    .size(40.dp)
+                    .background(Zinc.copy(alpha = 0.1f), RoundedCornerShape(10.dp))
+                    .clickable {
+                        val newLang = if (lang == "en") "mk" else "en"
+                        LocaleManager.setLanguage(context, newLang)
+                        (context as Activity).recreate()
+                    },
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = lang.uppercase(),
+                    color = Zinc,
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
+
             if (authState is Resource.Loading) {
                 CircularProgressIndicator(color = Zinc)
             }
@@ -128,6 +153,7 @@ fun LoginScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth(if (isTabletOrLandscape) 0.6f else 1f)
+                    .padding(24.dp)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)

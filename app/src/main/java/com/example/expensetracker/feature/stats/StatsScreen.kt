@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -54,6 +55,8 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
+
+                    .statusBarsPadding()
                     .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
             ) {
                 Image(
@@ -62,22 +65,18 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
                     modifier = Modifier
                         .align(Alignment.CenterStart)
                         .clickable { navController.navigateUp() },
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.outline)
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
                 )
                 ExpenseTextView(
                     text = stringResource(id = R.string.statistics),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier
                         .padding(16.dp)
                         .align(Alignment.Center)
                 )
-                Image(
-                    painter = painterResource(id = R.drawable.dots_menu),
-                    contentDescription = null,
-                    modifier = Modifier.align(Alignment.CenterEnd),
-                    colorFilter = ColorFilter.tint(Color.Black)
-                )
+
             }
         }
     ) { paddingValues ->
@@ -153,6 +152,10 @@ fun LineChart(entries: List<Entry>, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val chartLabel = stringResource(id = R.string.title_expenses)
 
+
+    val themePrimaryColor = MaterialTheme.colorScheme.primary.toArgb()
+    val themeOnBackgroundColor = MaterialTheme.colorScheme.onBackground.toArgb()
+
     AndroidView(
         factory = {
             val view = LayoutInflater.from(context).inflate(R.layout.stats_line_chart, null)
@@ -163,13 +166,13 @@ fun LineChart(entries: List<Entry>, modifier: Modifier = Modifier) {
         val lineChart = view.findViewById<LineChart>(R.id.lineChart)
 
         val dataSet = LineDataSet(entries, chartLabel).apply {
-            color = android.graphics.Color.parseColor("#FF2F7E79")
+            color = themePrimaryColor
             lineWidth = 3f
             axisDependency = YAxis.AxisDependency.RIGHT
             setDrawFilled(true)
             mode = LineDataSet.Mode.CUBIC_BEZIER
             valueTextSize = 12f
-            valueTextColor = android.graphics.Color.parseColor("#FF2F7E79")
+            valueTextColor = themePrimaryColor
 
             val drawable = ContextCompat.getDrawable(context, R.drawable.char_gradient)
             drawable?.let {
@@ -183,6 +186,10 @@ fun LineChart(entries: List<Entry>, modifier: Modifier = Modifier) {
                     return Utils.formatDateForChart(value.toLong())
                 }
             }
+
+
+        lineChart.xAxis.textColor = themeOnBackgroundColor
+
         lineChart.data = com.github.mikephil.charting.data.LineData(dataSet)
         lineChart.axisLeft.isEnabled = false
         lineChart.axisRight.isEnabled = false

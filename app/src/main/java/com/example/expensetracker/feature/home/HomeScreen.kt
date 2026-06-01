@@ -177,7 +177,7 @@ fun HeaderSection(modifier: Modifier = Modifier, userName: String) {
     ) {
         Column {
             ExpenseTextView(
-                text = stringResource(R.string.good_afternoon),
+                text = stringResource(R.string.hello),
                 style = Typography.bodyMedium,
                 color = Color.White
             )
@@ -187,10 +187,8 @@ fun HeaderSection(modifier: Modifier = Modifier, userName: String) {
                 color = Color.White
             )
         }
-        Image(
-            painter = painterResource(id = R.drawable.ic_notification),
-            contentDescription = stringResource(R.string.notifications_accessibility)
-        )
+
+
     }
 }
 

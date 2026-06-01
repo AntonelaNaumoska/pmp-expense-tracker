@@ -6,7 +6,7 @@
 
     <!-- Circle -->
     <path
-        android:fillColor="#FF438883"
+        android:fillColor="#FF2563EB"
         android:pathData="M50 0a50 50 0 1 1 0 100A50 50 0 0 1 50 0z"/>
 
     <!-- Plus Mark -->
