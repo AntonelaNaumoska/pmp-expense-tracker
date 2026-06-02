@@ -90,7 +90,7 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
                 ExpenseEntity(
                     id = null,
                     userId = "",
-                    title = summary.type,
+                    title = summary.title,
                     amount = summary.total_amount,
                     date = summary.date,
                     type = summary.type

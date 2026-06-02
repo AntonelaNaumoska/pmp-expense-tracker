@@ -81,6 +81,10 @@
     <string name="have_account_prompt">Already have an account? Sign In</string>
     <string name="error_password_match">Passwords do not match!</string>
 
+    <string name="language">Language</string>
+    <string name="logout">Logout</string>
+    <string name="language_label">Language: %1$s</string>
+
     <string name="facebook_app_id">2834409413601026</string>
     <string name="fb_login_protocol_scheme">fb2834409413601026</string>
     <string name="facebook_client_token">caa4efdec323c48615c473d38a0b13b7</string>

@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -142,7 +143,7 @@ fun AddExpense(
                         contentAlignment = Alignment.TopCenter
                     ) {
                         DataForm(
-                            modifier = Modifier.offset(y = (-24).dp),
+                            modifier = Modifier.offset(y = (-60).dp),
                             onAddExpenseClick = {
                                 viewModel.onEvent(AddExpenseUiEvent.OnAddExpenseClicked(it))
                             },
@@ -165,7 +166,7 @@ fun ActionHeaderRow(
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -177,29 +178,10 @@ fun ActionHeaderRow(
         ExpenseTextView(
             text = stringResource(if (isIncome) R.string.add_income else R.string.add_expense),
             style = Typography.titleLarge,
-            color = Color.White
+            color = Color.White,
+            modifier = Modifier
+                .padding(16.dp)
         )
-
-        Box {
-            Image(
-                painter = painterResource(id = R.drawable.dots_menu),
-                contentDescription = stringResource(R.string.menu_options),
-                modifier = Modifier.clickable { onMenuClick() }
-            )
-            DropdownMenu(
-                expanded = menuExpanded.value,
-                onDismissRequest = { menuExpanded.value = false }
-            ) {
-                DropdownMenuItem(
-                    text = { ExpenseTextView(text = stringResource(R.string.profile)) },
-                    onClick = { menuExpanded.value = false }
-                )
-                DropdownMenuItem(
-                    text = { ExpenseTextView(text = stringResource(R.string.settings)) },
-                    onClick = { menuExpanded.value = false }
-                )
-            }
-        }
     }
 }
 

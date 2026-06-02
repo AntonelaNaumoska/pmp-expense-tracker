@@ -175,13 +175,12 @@ fun TransactionListScreen(
                 }
 
                 items(filteredByDateRange) { item ->
-                    val icon = Utils.getItemIcon(item)
                     val amountText = if (item.type == "Income") item.amount else item.amount * -1
 
                     TransactionItem(
                         title = getLocalizedCategoryName(dbKey = item.title),
                         amount = Utils.formatCurrency(amountText),
-                        icon = icon ?: R.drawable.ic_expense,
+                        isIncome= item.type == "Income",
                         date = Utils.formatStringDateToMonthDayYear(item.date),
                         color = if (item.type == "Income") Color.Green else Color.Red,
                         modifier = Modifier.animateItem(
