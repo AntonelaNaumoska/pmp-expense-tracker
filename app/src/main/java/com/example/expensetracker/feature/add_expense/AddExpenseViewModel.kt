@@ -7,6 +7,7 @@ import com.example.expensetracker.base.NavigationEvent
 import com.example.expensetracker.base.UiEvent
 import com.example.expensetracker.data.dao.ExpenseDao
 import com.example.expensetracker.data.model.ExpenseEntity
+import com.example.expensetracker.data.repository.TransactionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,14 +15,14 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class AddExpenseViewModel @Inject constructor(val dao: ExpenseDao) : BaseViewModel() {
+class AddExpenseViewModel @Inject constructor( private val repository: TransactionRepository) : BaseViewModel() {
 
 
     suspend fun addExpense(expenseEntity: ExpenseEntity): Boolean {
         return try {
-            dao.insertExpense(expenseEntity)
+            repository.addTransaction(expenseEntity)
             true
-        } catch (ex: Throwable) {
+        } catch (e: Exception) {
             false
         }
     }

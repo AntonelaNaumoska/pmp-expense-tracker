@@ -321,12 +321,21 @@ fun DataForm(
         }
         Spacer(modifier = Modifier.height(28.dp))
 
+        val isFormValid =
+            amount.value.isNotBlank() &&
+                    amount.value.toDoubleOrNull() != null &&
+                    date.longValue != 0L
+
         Button(
             onClick = {
-                val rawAmount = amount.value.toDoubleOrNull() ?: 0.0
+                val rawAmount = amount.value.toDoubleOrNull() ?: return@Button
+
                 val currentLocale = Locale.getDefault()
 
-                val amountInUsd = if (currentLocale.language == "mk" || currentLocale.country == "MK") {
+                val amountInUsd = if (
+                    currentLocale.language == "mk" ||
+                    currentLocale.country == "MK"
+                ) {
                     rawAmount / Utils.EUR_TO_MKD_RATE
                 } else {
                     rawAmount
@@ -339,11 +348,15 @@ fun DataForm(
                     date = Utils.formatDateToHumanReadableForm(date.longValue),
                     type = type.value
                 )
+
                 onAddExpenseClick(model)
             },
+            enabled = isFormValid,
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Black
+            )
         ) {
             ExpenseTextView(
                 text = stringResource(if (isIncome) R.string.add_income else R.string.add_expense),

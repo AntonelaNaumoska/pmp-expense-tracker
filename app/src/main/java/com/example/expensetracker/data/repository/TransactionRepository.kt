@@ -2,6 +2,7 @@ package com.example.expensetracker.data.repository
 
 import com.example.expensetracker.data.dao.ExpenseDao
 import com.example.expensetracker.data.model.ExpenseEntity
+import com.example.expensetracker.data.model.ExpenseSummary
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +23,14 @@ class TransactionRepository @Inject constructor(
 
     fun getLocalExpenses(): Flow<List<ExpenseEntity>> {
         return expenseDao.getAllExpense(currentUserId)
+    }
+
+    fun getExpensesByDate(): Flow<List<ExpenseSummary>> {
+        return expenseDao.getAllExpenseByDate(currentUserId)
+    }
+
+    fun getTopExpenses(): Flow<List<ExpenseSummary>> {
+        return expenseDao.getTopExpenses(currentUserId)
     }
 
     suspend fun addTransaction(expense: ExpenseEntity) {

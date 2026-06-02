@@ -351,7 +351,7 @@ fun TransactionList(
             }
         }
 
-        items(list, key = { it.id ?: 0 }) { item ->
+        items(list) { item ->
             val icon = Utils.getItemIcon(item)
             val amount = if (item.type == "Income") item.amount else item.amount * -1
 

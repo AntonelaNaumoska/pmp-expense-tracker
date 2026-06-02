@@ -44,8 +44,8 @@ fun TransactionListScreen(
     val filterTypeOptions = remember {
         listOf(
             CategoryUiModel("All", R.string.filter_all),
-            CategoryUiModel("Expense", R.string.add_expense),
-            CategoryUiModel("Income", R.string.add_income)
+            CategoryUiModel("Expense", R.string.expense),
+            CategoryUiModel("Income", R.string.income)
         )
     }
 
@@ -69,8 +69,35 @@ fun TransactionListScreen(
         else -> state.value
     }
 
+    val currentTime = System.currentTimeMillis()
+
     val filteredByDateRange = filteredTransactions.filter { transaction ->
-        true
+        val transactionTime = Utils.getMillisFromDate(transaction.date)
+
+        when (selectedDateRange.dbKey) {
+            "Today" -> {
+                currentTime - transactionTime <= 24 * 60 * 60 * 1000L
+            }
+
+            "Yesterday" -> {
+                val diff = currentTime - transactionTime
+                diff in (24 * 60 * 60 * 1000L)..(48 * 60 * 60 * 1000L)
+            }
+
+            "Last 30 Days" -> {
+                currentTime - transactionTime <= 30L * 24 * 60 * 60 * 1000
+            }
+
+            "Last 90 Days" -> {
+                currentTime - transactionTime <= 90L * 24 * 60 * 60 * 1000
+            }
+
+            "Last Year" -> {
+                currentTime - transactionTime <= 365L * 24 * 60 * 60 * 1000
+            }
+
+            else -> true
+        }
     }
 
     Scaffold(
@@ -147,7 +174,7 @@ fun TransactionListScreen(
                     }
                 }
 
-                items(filteredByDateRange, key = { it.id ?: 0 }) { item ->
+                items(filteredByDateRange) { item ->
                     val icon = Utils.getItemIcon(item)
                     val amountText = if (item.type == "Income") item.amount else item.amount * -1
 
