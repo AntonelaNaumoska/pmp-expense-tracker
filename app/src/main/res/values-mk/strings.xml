@@ -33,16 +33,13 @@
     <string name="currency_symbol">ден </string>
     <string name="back_accessibility">Назад</string>
 
-    <string name="category_paypal">Paypal</string>
+
     <string name="category_salary">Плата</string>
     <string name="category_freelance">Фриленс</string>
     <string name="category_investments">Инвестиции</string>
-    <string name="category_bonus">Бонус</string>
-    <string name="category_rental">Кирија од имот</string>
     <string name="category_grocery">Намирници</string>
     <string name="category_netflix">Netflix</string>
     <string name="category_rent">Кирија</string>
-    <string name="category_starbucks">Кафуле</string>
     <string name="category_shopping">Шопинг</string>
     <string name="category_transport">Транспорт</string>
     <string name="category_utilities">Сметки</string>
@@ -63,10 +60,10 @@
     <string name="filter_yesterday">Вчера</string>
     <string name="filter_30_days">Последни 30 дена</string>
     <string name="filter_90_days">Последни 90 дена</string>
-    <string name="filter_last_year">Минатата година</string>
+    <string name="filter_last_year">Последната година</string>
 
     <string name="statistics">Статистика</string>
-    <string name="top_spending">Најголеми трошоци</string>
+    <string name="top_spending">Трошоци по категорија </string>
     <string name="title_expenses">Трошоци</string>
 
     <string name="welcome_back">Добредојдовте назад</string>

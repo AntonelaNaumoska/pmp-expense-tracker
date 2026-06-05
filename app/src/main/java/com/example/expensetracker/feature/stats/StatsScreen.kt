@@ -139,7 +139,10 @@ fun StatsScreen(navController: NavController, viewModel: StatsViewModel = hiltVi
                         modifier = Modifier.weight(1f),
                         list = displayableTopExpenses,
                         title = stringResource(id = R.string.top_spending),
-                        onSeeAllClicked = {}
+                        onSeeAllClicked = {
+                            navController.navigate("/all_transactions")
+
+                        }
                     )
                 }
             }

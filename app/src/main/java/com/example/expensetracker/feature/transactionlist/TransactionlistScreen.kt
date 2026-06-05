@@ -32,7 +32,10 @@ import com.example.expensetracker.feature.home.HomeViewModel
 import com.example.expensetracker.utils.Utils
 import com.example.expensetracker.utils.getLocalizedCategoryName
 import com.example.expensetracker.widget.ExpenseTextView
-
+import java.util.Calendar
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 @Composable
 fun TransactionListScreen(
     navController: NavController,
@@ -75,8 +78,10 @@ fun TransactionListScreen(
         val transactionTime = Utils.getMillisFromDate(transaction.date)
 
         when (selectedDateRange.dbKey) {
-            "Today" -> {
-                currentTime - transactionTime <= 24 * 60 * 60 * 1000L
+            "Today" -> Calendar.getInstance().let {
+                val t = Calendar.getInstance().apply { timeInMillis = transactionTime }
+                it.get(Calendar.YEAR) == t.get(Calendar.YEAR) &&
+                        it.get(Calendar.DAY_OF_YEAR) == t.get(Calendar.DAY_OF_YEAR)
             }
 
             "Yesterday" -> {

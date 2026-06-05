@@ -11,9 +11,19 @@ interface ExpenseDao {
     @Query("SELECT * FROM expense_table WHERE userId = :userId")
     fun getAllExpense(userId: String): Flow<List<ExpenseEntity>>
 
-    @Query("SELECT title, type, date, amount AS total_amount FROM expense_table WHERE type = 'Expense' AND userId = :userId ORDER BY amount DESC LIMIT 5")
+    @Query("""
+SELECT
+    title,
+    type,
+    MAX(date) AS date,
+    SUM(amount) AS total_amount
+FROM expense_table
+WHERE type = 'Expense'
+AND userId = :userId
+GROUP BY title
+ORDER BY total_amount DESC
+""")
     fun getTopExpenses(userId: String): Flow<List<ExpenseSummary>>
-
     @Query("SELECT title, type, date, SUM(amount) AS total_amount FROM expense_table WHERE type = :type AND userId = :userId GROUP BY type, date ORDER BY date")
     fun getAllExpenseByDate(userId: String, type: String = "Expense"): Flow<List<ExpenseSummary>>
 

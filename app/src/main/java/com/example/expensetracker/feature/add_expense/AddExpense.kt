@@ -178,7 +178,7 @@ fun ActionHeaderRow(
         ExpenseTextView(
             text = stringResource(if (isIncome) R.string.add_income else R.string.add_expense),
             style = Typography.titleLarge,
-            color = Color.White,
+            color = Color.Black,
             modifier = Modifier
                 .padding(16.dp)
         )
@@ -200,12 +200,9 @@ fun DataForm(
     val categoryModels = remember(isIncome) {
         if (isIncome) {
             listOf(
-                CategoryUiModel("paypal", R.string.category_paypal),
                 CategoryUiModel("salary", R.string.category_salary),
                 CategoryUiModel("freelance", R.string.category_freelance),
                 CategoryUiModel("investments", R.string.category_investments),
-                CategoryUiModel("bonus", R.string.category_bonus),
-                CategoryUiModel("rental_income", R.string.category_rental),
                 CategoryUiModel("other", R.string.category_other)
             )
         } else {
@@ -213,8 +210,6 @@ fun DataForm(
                 CategoryUiModel("grocery", R.string.category_grocery),
                 CategoryUiModel("netflix", R.string.category_netflix),
                 CategoryUiModel("rent", R.string.category_rent),
-                CategoryUiModel("paypal", R.string.category_paypal),
-                CategoryUiModel("starbucks", R.string.category_starbucks),
                 CategoryUiModel("shopping", R.string.category_shopping),
                 CategoryUiModel("transport", R.string.category_transport),
                 CategoryUiModel("utilities", R.string.category_utilities),
